@@ -1,37 +1,174 @@
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📘 EdTech Admin Dashboard – Full Stack Assignment
 
-## Getting Started
+## 🚀 Overview
+This project is an **EdTech Admin Dashboard** built to manage courses in a learning platform.  
+It demonstrates **secure authentication**, **role-based authorization**, and **full CRUD operations** using a modern full-stack architecture.
 
-First, run the development server:
+The application is designed with **scalability, security, and maintainability** in mind.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- Next.js 15 (App Router)
+- React 18
+- Tailwind CSS
+- Server Components & Server Actions
+
+### Backend
+- NextAuth.js (Credentials Provider)
+- Prisma ORM
+- PostgreSQL
+
+### Authentication & Security
+- JWT-based sessions
+- Password hashing with bcrypt
+- Role-based access control (ADMIN)
+
+---
+
+## ✨ Features
+
+### 🔐 Authentication
+- Email & password login
+- Secure password hashing
+- JWT session strategy
+- Protected routes using server-side session checks
+
+### 🧑‍💼 Admin Dashboard
+- Admin-only access
+- Sidebar navigation
+- Secure server-rendered pages
+
+### 📚 Course Management
+- Create courses
+- View course list
+- Delete courses
+- Course pricing support
+- Draft / Published status
+- Instructor relationship enforced at DB level
+
+---
+
+## 🗂 Project Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── auth/[...nextauth]/route.ts
+│   │   └── courses/route.ts
+│   ├── dashboard/
+│   │   ├── layout.tsx
+│   │   └── courses/
+│   │       ├── page.tsx
+│   │       └── actions.ts
+│   └── login/page.tsx
+│
+├── lib/
+│   ├── auth.ts
+│   ├── prisma.ts
+│   └── admin.ts
+│
+├── prisma/
+│   ├── schema.prisma
+│   └── seed.ts
+│
+└── types/
+    └── next-auth.d.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Authentication Design
+- Credentials-based login using NextAuth
+- Password validation with bcrypt
+- Role injected into JWT and session
+- Admin-only route protection using `getServerSession`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧠 Database Design
 
-To learn more about Next.js, take a look at the following resources:
+### User
+- id
+- email
+- password (hashed)
+- role (ADMIN / USER)
+- courses (relation)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Course
+- id
+- title
+- description
+- price
+- status (DRAFT / PUBLISHED)
+- instructorId (relation)
+- createdAt
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔄 Server Actions
+The project uses **Next.js Server Actions** instead of traditional REST APIs for form submissions, improving security and reducing boilerplate.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧪 Setup Instructions
+
+### 1️⃣ Install Dependencies
+```bash
+npm install
+```
+
+### 2️⃣ Environment Variables
+Create `.env`:
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/edtech
+NEXTAUTH_SECRET=your-secret
+NEXTAUTH_URL=http://localhost:3000
+```
+
+### 3️⃣ Prisma Setup
+```bash
+npx prisma migrate reset
+npx prisma generate
+npx prisma db seed
+```
+
+### 4️⃣ Run Project
+```bash
+npm run dev
+```
+
+---
+
+## 🔑 Admin Login
+
+```
+Email: admin@edtech.com
+Password: admin123
+```
+
+---
+
+## 🎯 Key Engineering Decisions
+- Prisma ORM for type-safe database access
+- Role-based authorization enforced server-side
+- Schema-first database design
+- Server Actions for secure mutations
+
+---
+
+## 🚀 Future Improvements
+- Edit course functionality
+- Instructor management
+- Student enrollment
+- Pagination & search
+- Deployment
+
+---
+
+## ✅ Conclusion
+This project demonstrates **real-world full-stack development**, secure authentication, and clean architecture suitable for production-level applications.

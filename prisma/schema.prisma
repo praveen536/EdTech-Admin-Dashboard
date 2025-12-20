@@ -27,6 +27,7 @@ model Course {
   id           String   @id @default(uuid())
   title        String
   description  String
+  price        Int
   status       String   @default("DRAFT")
   instructorId String
   instructor   User     @relation("InstructorCourses", fields: [instructorId], references: [id])

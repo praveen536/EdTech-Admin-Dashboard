@@ -1,5 +1,5 @@
 
-# 📘 EdTech Admin Dashboard – Full Stack Assignment
+# 📘 EdTech Admin Dashboard – Full Stack App
 
 ## 🚀 Overview
 This project is an **EdTech Admin Dashboard** built to manage courses in a learning platform.  
